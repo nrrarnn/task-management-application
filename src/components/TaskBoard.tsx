@@ -49,14 +49,14 @@ const TaskBoard: React.FC = () => {
 
   return (
     <>
-      <div className="max-w-7xl mx-auto">
+      <div className="w-full mx-auto flex flex-col items-center max-w-7xl">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2 text-center">Task Management</h1>
           <p className="text-gray-600 text-center">Organize and track your tasks with drag-and-drop simplicity</p>
         </div>
 
         <DragDropContext onDragEnd={onDragEnd}>
-          <div className="flex justify-center gap-6 overflow-x-auto pb-4 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <div className="flex justify-center  gap-6 overflow-x-auto w-fit pb-4 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
             {progressConfig.map(({ key, title, color }) => (
               <TaskColumn key={key} progress={key} title={title} tasks={getTasksByProgress(key)} color={color} onDetail={openTaskModal} />
             ))}

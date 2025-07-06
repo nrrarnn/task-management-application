@@ -44,7 +44,7 @@ const CreateTaskForm: React.FC<CreateTaskFormProps> = ({ progress, onClose }) =>
       : '1';
 
     addTask({
-      id: nextId,
+      id: `TASK-${nextId}`,
       title: formData.title.trim(),
       description: formData.description.trim() || "",
       priority: formData.priority,

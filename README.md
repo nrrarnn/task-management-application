@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Task Management Application
 
-## Getting Started
+A Kanban-style task management app built with Next.js, Zustand, and Tailwind CSS.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Setup Instructions (How to run the app locally)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. **Clone the repository:**
+   ```bash
+   git clone <your-repo-url>
+   cd task-management-application
+   ```
+2. **Install dependencies:**
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+3. **Run the development server:**
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+4. **Open your browser:**
+   Visit [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🧩 Explanation of the Chosen Approach
 
-## Learn More
+### State Management
+- Uses [Zustand](https://github.com/pmndrs/zustand) for simple, scalable, and performant global state management.
+- All task operations (add, edit, delete, move) are handled in `src/store/taskStore.ts`.
 
-To learn more about Next.js, take a look at the following resources:
+### Storage Solution
+- Tasks are persisted in the browser's `localStorage` using utility functions in `src/utils/localStorage.ts`.
+- On every change, tasks are saved, and on app load, tasks are restored from local storage.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### UI Components
+- Built with React and Tailwind CSS for a modern, responsive UI.
+- Drag-and-drop is powered by `@hello-pangea/dnd` for smooth Kanban board interactions.
+- Main components:
+  - `TaskBoard`: The main board, manages columns and drag events.
+  - `TaskColumn`: Represents each status column (To Do, In Progress, Done).
+  - `TaskCard`: Displays individual tasks, with dropdown actions and edit/detail modals.
+  - `CreateTaskForm` & `EditTaskForm`: For adding and editing tasks.
+  - `TaskDetailModal`: Shows full task details in a modal.
+  - `PriorityBadge`: Consistent priority icon and color display.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Folder Structure
+- `src/components/`: All UI components.
+- `src/store/`: Zustand store for tasks.
+- `src/types/`: TypeScript types for tasks.
+- `src/utils/`: Utility functions (e.g., localStorage helpers).
+- `public/`: Static assets.
 
-## Deploy on Vercel
+### Data Handling
+- All task data is managed in the Zustand store and synced to localStorage.
+- Each task has fields: `id`, `title`, `description`, `priority`, `progress`, `dueDate`, `createdAt`.
+- IDs are auto-incremented for easy reference.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## ⚠️ Known Issues
+- No backend: All data is stored in localStorage, so tasks are lost if you clear browser storage.
+- No authentication or multi-user support.
+- No advanced filtering, search, or notifications.
+- Drag-and-drop is not touch-optimized for mobile.
+- Minimal validation on forms (e.g., no duplicate title check).
+
+---
+
+## 💡 Improvements (if given more time)
+- Add user authentication and cloud sync (e.g., Firebase, Supabase).
+- Implement advanced filtering, search, and sorting.
+- Add task labels, attachments, and comments.
+- Improve accessibility and mobile/touch support.
+- Add due date reminders/notifications.
+- Add tests (unit, integration, e2e).
+- Polish UI/UX with animations and dark mode.
+
+---
+
+## 📁 Credits
+- Built with [Next.js](https://nextjs.org/), [Zustand](https://github.com/pmndrs/zustand), [Tailwind CSS](https://tailwindcss.com/), and [@hello-pangea/dnd](https://github.com/hello-pangea/dnd).
+
+---

@@ -78,7 +78,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, index, onDetail }) => {
                     <div className="flex items-center justify-center">
                       <input type="checkbox" />
                     </div>
-                    <p className="text-xs text-gray-600 rounded-full bg-gray-100 px-2 py-1">SM-{task.id}</p>
+                    <p className="text-[10px] text-gray-600 rounded-full bg-gray-100 px-2 py-1 tracking-wide">{task.id}</p>
                   </div>
                   <div className="relative" ref={dropdownRef}>
                     <button className="p-1 text-gray-400 hover:text-slate-500 transition-colors" onClick={() => setIsOpen(!isOpen)}>
