@@ -1,4 +1,4 @@
-import { Task } from '../types/task';
+import { Task } from "../types/task";
 
 const STORAGE_KEY = 'task-manager-data';
 
