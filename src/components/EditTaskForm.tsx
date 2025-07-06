@@ -49,7 +49,7 @@ const EditTaskForm: React.FC<EditTaskFormProps> = ({ task, onCancel, onSave }) =
   return (
     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-3">
       <div className="flex items-center justify-between mb-3">
-        <h3 className="font-medium text-gray-900">Edit Task</h3>
+        <h3 className="font-semibold text-sm px-1 text-gray-900">Edit Task</h3>
         <button onClick={onCancel} className="p-1 text-gray-400 hover:text-gray-600 transition-colors">
           <X size={16} />
         </button>
@@ -89,10 +89,10 @@ const EditTaskForm: React.FC<EditTaskFormProps> = ({ task, onCancel, onSave }) =
         </div>
 
         <div className="flex justify-end space-x-2 pt-2">
-          <button type="button" onClick={onCancel} className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors">
+          <button type="button" onClick={onCancel} className="px-4 py-2 text-xs font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors">
             Cancel
           </button>
-          <button type="submit" className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition-colors">
+          <button type="submit" className="px-4 py-2 text-xs font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition-colors">
             Save Changes
           </button>
         </div>

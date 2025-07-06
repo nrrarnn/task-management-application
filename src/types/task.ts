@@ -6,6 +6,7 @@ export interface Task {
   title: string;
   description: string;
   dueDate?: string; 
+  createdAt: string;
   priority: TaskPriority;
   progress: TaskProgress;
 }

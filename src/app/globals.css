@@ -23,7 +23,7 @@
 
 @layer components {
   .input-text {
-    @apply w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-600/40 focus:border-transparent placeholder:text-sm placeholder:text-gray-500 placeholder:tracking-wide;
+    @apply w-full px-3 py-2 text-slate-800 text-xs border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-600/40 focus:border-transparent placeholder:text-xs placeholder:text-gray-500 placeholder:tracking-wide;
   }
 }
 

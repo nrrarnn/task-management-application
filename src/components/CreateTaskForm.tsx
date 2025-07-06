@@ -19,7 +19,7 @@ const CreateTaskForm: React.FC<CreateTaskFormProps> = ({ progress, onClose }) =>
     description: "",
     priority: "Medium" as TaskPriority, 
     dueDate: "",
-    tags: "",
+    createdAt: new Date().toISOString(),
   });
 
   const priorities = [
@@ -39,7 +39,6 @@ const CreateTaskForm: React.FC<CreateTaskFormProps> = ({ progress, onClose }) =>
     e.preventDefault();
     if (!formData.title.trim()) return;
 
-    // Generate next id as string: max existing id + 1, or '1' if no tasks
     const nextId = (tasks.length > 0)
       ? (Math.max(...tasks.map(t => Number(t.id) || 0)) + 1).toString()
       : '1';
@@ -51,6 +50,7 @@ const CreateTaskForm: React.FC<CreateTaskFormProps> = ({ progress, onClose }) =>
       priority: formData.priority,
       dueDate: formData.dueDate || undefined,
       progress: progress,
+      createdAt: formData.createdAt,
     });
 
     setFormData({
@@ -58,7 +58,7 @@ const CreateTaskForm: React.FC<CreateTaskFormProps> = ({ progress, onClose }) =>
       description: "",
       priority: "Medium" as TaskPriority,
       dueDate: "",
-      tags: "",
+      createdAt: new Date().toISOString(),
     });
     onClose();
   };
@@ -66,7 +66,7 @@ const CreateTaskForm: React.FC<CreateTaskFormProps> = ({ progress, onClose }) =>
   return (
     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-3">
       <div className="flex items-center justify-between mb-3">
-        <h3 className="font-medium text-gray-900">Create New Task</h3>
+        <h3 className="font-semibold px-1 text-sm text-gray-800">Create New Task</h3>
         <button onClick={onClose} className="p-1 text-gray-400 hover:text-gray-600 transition-colors">
           <X size={16} />
         </button>
@@ -109,16 +109,16 @@ const CreateTaskForm: React.FC<CreateTaskFormProps> = ({ progress, onClose }) =>
               type="date"
               value={formData.dueDate}
               onChange={(e) => setFormData({ ...formData, dueDate: e.target.value })}
-              className="input-text"
+              className="input-text "
             />
           </div>
         </div>
 
         <div className="flex justify-end space-x-2 pt-2">
-          <button type="button" onClick={onClose} className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors">
+          <button type="button" onClick={onClose} className="px-4 py-2 text-xs font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors">
             Cancel
           </button>
-          <button type="submit" className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition-colors">
+          <button type="submit" className="px-4 py-2 text-xs font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition-colors">
             + Add Task
           </button>
         </div>

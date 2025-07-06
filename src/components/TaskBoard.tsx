@@ -1,10 +1,11 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { DragDropContext, DropResult } from "@hello-pangea/dnd";
 import { useTaskStore } from "../store/taskStore";
 import { Task, TaskProgress } from "../types/task";
 import TaskColumn from "./TaskColumn";
+import TaskDetailModal from "./TaskDetailModal";
 
 const progressConfig: Array<{
   key: TaskProgress;
@@ -18,6 +19,8 @@ const progressConfig: Array<{
 
 const TaskBoard: React.FC = () => {
   const { tasks, moveTask } = useTaskStore();
+  const [selectedTask, setSelectedTask] = useState<Task | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const onDragEnd = (result: DropResult) => {
     const { destination, source, draggableId } = result;
@@ -30,12 +33,22 @@ const TaskBoard: React.FC = () => {
     moveTask(draggableId, destination.droppableId as TaskProgress);
   };
 
+  const openTaskModal = (task: Task) => {
+    setSelectedTask(task);
+    setIsModalOpen(true);
+  };
+
+  const closeTaskModal = () => {
+    setSelectedTask(null);
+    setIsModalOpen(false);
+  };
+
   const getTasksByProgress = (progress: TaskProgress): Task[] => {
     return tasks.filter((task) => task.progress === progress);
   };
 
   return (
-    <div>
+    <>
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2 text-center">Task Management</h1>
@@ -45,12 +58,28 @@ const TaskBoard: React.FC = () => {
         <DragDropContext onDragEnd={onDragEnd}>
           <div className="flex justify-center gap-6 overflow-x-auto pb-4 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
             {progressConfig.map(({ key, title, color }) => (
-              <TaskColumn key={key} progress={key} title={title} tasks={getTasksByProgress(key)} color={color} />
+              <TaskColumn key={key} progress={key} title={title} tasks={getTasksByProgress(key)} color={color} onDetail={openTaskModal} />
             ))}
           </div>
         </DragDropContext>
+        {selectedTask && (
+          <TaskDetailModal
+            task={{
+              ...selectedTask,
+              dueDate: selectedTask.dueDate || "",
+              progress: selectedTask.progress,
+              priority: ((): "Low" | "Medium" | "High" => {
+                const p = typeof selectedTask.priority === "string" ? selectedTask.priority.toLowerCase() : "low";
+                if (p === "Low" || p === "Medium" || p === "High") return p;
+                return "Low";
+              })(),
+            }}
+            isOpen={isModalOpen}
+            onClose={closeTaskModal}
+          />
+        )}
       </div>
-    </div>
+    </>
   );
 };
 

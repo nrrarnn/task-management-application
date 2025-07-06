@@ -14,6 +14,7 @@ interface TaskColumnProps {
   title: string;
   tasks: Task[];
   color: string;
+  onDetail: (task: Task) => void;
 }
 
 interface StatusStyle {
@@ -44,8 +45,7 @@ const statusStyles: Record<TaskProgress, StatusStyle> = {
   },
 };
 
-
-const TaskColumn: React.FC<TaskColumnProps> = ({ progress, title, tasks }) => {
+const TaskColumn: React.FC<TaskColumnProps> = ({ progress, title, tasks, onDetail }) => {
   const [isCreating, setIsCreating] = useState(false);
   const { bg, text, icon: Icon, iconColor } = statusStyles[progress];
 
@@ -60,9 +60,9 @@ const TaskColumn: React.FC<TaskColumnProps> = ({ progress, title, tasks }) => {
             </h2>
             <span className="bg-gray-100 px-2 py-1 rounded-full  text-sm font-medium text-gray-600">{tasks.length}</span>
           </div>
-            <button onClick={() => setIsCreating(true)} className="px-2">
-              <Plus size={16} className="text-slate-800" />
-            </button>
+          <button onClick={() => setIsCreating(true)} className="px-2">
+            <Plus size={16} className="text-slate-800" />
+          </button>
         </div>
       </div>
 
@@ -79,7 +79,7 @@ const TaskColumn: React.FC<TaskColumnProps> = ({ progress, title, tasks }) => {
             {isCreating && <CreateTaskForm progress={progress} onClose={() => setIsCreating(false)} />}
 
             {tasks.map((task, index) => (
-              <TaskCard key={task.id} task={task} index={index} />
+              <TaskCard key={task.id} task={task} index={index} onDetail={onDetail} />
             ))}
 
             {provided.placeholder}
