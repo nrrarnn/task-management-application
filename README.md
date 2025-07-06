@@ -8,7 +8,7 @@ A Kanban-style task management app built with Next.js, Zustand, and Tailwind CSS
 
 1. **Clone the repository:**
    ```bash
-   git clone <your-repo-url>
+   git clone https://github.com/nrrarnn/task-management-application.git
    cd task-management-application
    ```
 2. **Install dependencies:**
