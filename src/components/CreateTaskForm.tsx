@@ -39,9 +39,17 @@ const CreateTaskForm: React.FC<CreateTaskFormProps> = ({ progress, onClose }) =>
     e.preventDefault();
     if (!formData.title.trim()) return;
 
-    const nextId = (tasks.length > 0)
-      ? (Math.max(...tasks.map(t => Number(t.id) || 0)) + 1).toString()
-      : '1';
+    const nextId =
+      tasks.length > 0
+        ? (
+            Math.max(
+              ...tasks.map((t) => {
+                const num = parseInt(t.id.toString().replace("TASK-", "")) || 0;
+                return num;
+              })
+            ) + 1
+          ).toString()
+        : "1";
 
     addTask({
       id: `TASK-${nextId}`,
