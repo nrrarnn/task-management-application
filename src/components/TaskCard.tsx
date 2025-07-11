@@ -129,14 +129,14 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, index, onDetail }) => {
       {isConfirmOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 bg-opacity-40">
           <div className="bg-white rounded-lg p-6 w-full max-w-sm shadow-lg">
-            <h2 className="text-lg font-semibold text-gray-800 mb-4">Hapus Task?</h2>
-            <p className="text-sm text-gray-600 mb-6">Apakah kamu yakin ingin menghapus task ini? Tindakan ini tidak dapat dibatalkan.</p>
+            <h2 className="text-lg font-semibold text-gray-800 mb-4">Delete Task?</h2>
+            <p className="text-sm text-gray-600 mb-6">Are you sure you want to delete this task? This action cannot be undone.</p>
             <div className="flex justify-end gap-3">
               <button onClick={() => setIsConfirmOpen(false)} className="px-4 py-2 text-sm rounded-md bg-gray-200 text-gray-700 hover:bg-gray-300">
-                Batal
+                Cancel
               </button>
               <button onClick={handleDelete} className="px-4 py-2 text-sm rounded-md bg-red-600 text-white hover:bg-red-700">
-                Hapus
+                Delete
               </button>
             </div>
           </div>
