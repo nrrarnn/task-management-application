@@ -26,8 +26,8 @@ export const useTaskStore = create<TaskState>((set) => ({
     })),
   moveTask: (id, newProgress) =>
     set((state) => ({
-      tasks: state.tasks.map((task) =>
-        task.id === id ? { ...task, progress: newProgress } : task
+      tasks: state.tasks.map((task) => 
+        task.id === id ? { ...task, progress: newProgress, finishDate: newProgress === "done" ? new Date() : undefined  } : task
       ),
     })),
   setTasks: (tasks) => set({ tasks }),

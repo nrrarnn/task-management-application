@@ -140,6 +140,7 @@ const TaskModal: React.FC<TaskModalProps> = ({ task, isOpen, onClose }) => {
                     <span className="font-semibold text-green-600">Done</span>
                   </>
                 )}
+
               </div>
             </div>
           </div>
@@ -147,7 +148,8 @@ const TaskModal: React.FC<TaskModalProps> = ({ task, isOpen, onClose }) => {
 
         <div className="px-6 py-4 bg-gray-50 rounded-b-2xl">
           <div className="flex items-center justify-between">
-            <p className="text-sm text-gray-500">Created on {formatDate(task.createdAt)}</p>
+            <p className="text-sm text-gray-500">Created on {formatDate(task.createdAt)} {task.finishDate? `and finished on 
+            ${formatDate(task.finishDate ?? "")}` : ""}</p>
             <button onClick={onClose} className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium">
               Close
             </button>
